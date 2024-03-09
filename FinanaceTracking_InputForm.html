@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2299.5">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;base target="_top"&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;h1&gt;Expense Entry Form&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;form id="expenseForm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;label for="category"&gt;Category:&lt;/label&gt;&lt;br&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;select id="category" name="category"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;? var categories = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Monthly Finances").getRange("A:A").getValues(); ?&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;? for (var i = 0; i &lt; categories.length; i++) { ?&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="&lt;?= categories[i][0] ?&gt;"&gt;&lt;?= categories[i][0] ?&gt;&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;? } ?&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/select&gt;&lt;br&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;label for="date"&gt;Date:&lt;/label&gt;&lt;br&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;input type="date" id="date" name="date" value="&lt;?= Utilities.formatDate(new Date(), Session.getScriptTimeZone(), "yyyy-MM-dd") ?&gt;"&gt;&lt;br&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;label for="description"&gt;Description:&lt;/label&gt;&lt;br&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;input type="text" id="description" name="description"&gt;&lt;br&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;label for="moneyOut"&gt;Money Out:&lt;/label&gt;&lt;br&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;input type="number" id="moneyOut" name="moneyOut"&gt;&lt;br&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;label for="moneyIn"&gt;Money In:&lt;/label&gt;&lt;br&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;input type="number" id="moneyIn" name="moneyIn"&gt;&lt;br&gt;&lt;br&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;input type="submit" value="Submit"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/form&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById("expenseForm").addEventListener("submit", function(e) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>e.preventDefault();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>var formData = new FormData(this);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>var xhr = new XMLHttpRequest();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>xhr.open("POST", "https://script.google.com/macros/s/AKfycbzmF5y8GfwRq3ntvl5R_SWwAj3WvhTphmprkLUPdKu8OjHEZUiD7qymQv307YJYOC2E/exec", true);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>xhr.send(formData);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>location.reload(); // Reload the page after submission</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
